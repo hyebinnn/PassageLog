@@ -1,0 +1,68 @@
+<!-- 캡쳐본 파일 올리는 페이지 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="./LoadImage.js">
+
+    </script>
+
+    <style>
+        .button {
+            display: flex;
+            width: fit-content;
+            /* align-items: center; */
+            justify-content: center;
+            margin: auto;
+            padding: 7px;
+            border: 1px solid gray;
+        }
+        label {
+            cursor: pointer;
+            font-size: 1em;
+        }
+        #ChooseFile {
+            visibility: hidden;
+        }
+        .preview {
+            height: 650px; 
+            width: 500px; 
+            margin: auto;
+            margin-bottom: 15px;
+        }
+    </style>
+
+
+</head>
+<body>
+    <header style="height: 50px;"> </header>
+    <!-- 
+        enctype: 데이터 받아올 때 인코딩 타입
+        class: id와 비슷함. id는 같은 이름 중복 사용이 불가능하지만, class는 중복 가능
+        label for: 주로 input 태그의 이름을 붙여주는 용도. 태그 id와 비슷
+        accept: 설정해둔 파일 형식만 불러오기 가능
+    -->
+
+    <div class="preview">
+        
+    </div>
+
+
+
+    <form method="post" enctype="multipart/form-data">          
+        <div class="button">
+            <label for="ChooseFile">
+                📂 File Upload     
+            </label>
+        </div>
+        <input type="file" id="ChooseFile" name="ChooseFile" accept="image/*" onchange="loadFile(this)">
+        <!-- 이미지 파일이 선택된 순간, loadFile이라는 함수 실행 -->
+    </form>
+
+
+
+    
+</body>
+</html>
