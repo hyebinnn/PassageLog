@@ -11,10 +11,11 @@ function loadFile(input) {
     Image.src = URL.createObjectURL(file);
 
 
-    Image.style.width = "500px";
-    Image.style.height = "650px";
+    Image.style.width = "400px";
+    Image.style.height = "550px";
     Image.style.margin = "auto";
     Image.style.marginBottom = "15px";
+    Image.style.border = "1px solid gray";
     Image.style.objectFit = "contain";
     ImagePreview.appendChild(Image);
 
