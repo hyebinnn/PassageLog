@@ -1,5 +1,4 @@
-// import spawn from 'child_process';
-
+import { spawn } from 'child_process';
 
 function loadFile(input, img_name) {
     var file = input.files[0];
@@ -34,9 +33,14 @@ function loadFile(input, img_name) {
 
 
 function ImgOCR(name) {
-    // const spawn = require('child_process').spawn;
-    const result = spawn('python', ['OCR.py'], name);
+    // const cp = require('child_process').spawn;
+    // python file 불러오기
+    const result = spawn('python', ['OCR.py', name]);
 
     console.log(name)
     console.log(result)
+
+    result.stdout.on('data', function(data) {
+        console.log(data.toString());
+    });
 }

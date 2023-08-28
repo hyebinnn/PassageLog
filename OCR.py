@@ -18,7 +18,7 @@ def OCR(img_name):
 
     path = '/Users/xxizo89/Downloads/'
     os.chdir(path)
-    img_path = 'img_name'
+    img_path = img_name
 
     img = cv2.imread(img_path)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -26,4 +26,6 @@ def OCR(img_name):
     gray = cv2.medianBlur(gray, 3)
     raw_text = pytesseract.image_to_string(gray, config=config) 
 
-    print(raw_text) 
+    # print(raw_text) 
+
+    return raw_text
