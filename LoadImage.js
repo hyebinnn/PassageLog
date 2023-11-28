@@ -1,7 +1,34 @@
-import { spawn } from 'child_process';
+var fileInput = document.getElementById('uploadImgFile');
+var imgName;
 
-function loadFile(input, img_name) {
-    var file = input.files[0];
+fileInput.addEventListener('change', function () {
+    var file = fileInput.files[0];
+
+    if (file) {
+        var formData = new FormData();
+        formData.append('imgFile', file);
+
+        fetch('/upload', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.text())
+            .then(fileName => {
+                imgName = fileName;
+                loadFile(imgName);
+            });
+    }
+})
+
+
+var ocrBtn = document.getElementById("StartOCR");
+ocrBtn.addEventListener('click', function() {
+    console.log('image name is :', imgName);
+})
+
+export function loadFile(imgName) {
+    var imgPath = './uploads/' + imgName;
+    console.log(imgPath);
 
     // 업로드한 이미지 보여주기 (이미지 div 생성)
     var ImagePreview = document.querySelector('.preview');
@@ -10,7 +37,7 @@ function loadFile(input, img_name) {
     ImagePreview.innerHTML = "";
 
     Image.setAttribute("class", "img");
-    Image.src = URL.createObjectURL(file);          // file의 url 주소 만들어서 img 태그의 src로 설정
+    Image.src = imgPath;
 
     Image.style.width = "400px";
     Image.style.height = "550px";
@@ -19,28 +46,12 @@ function loadFile(input, img_name) {
     Image.style.border = "1px solid gray";
     Image.style.objectFit = "contain";
     ImagePreview.appendChild(Image);
-    DownLoadImg(Image);
-    
-    function DownLoadImg(img) {             // Download Image file on local
-        var a = document.createElement("a");
-        a.style = "display: none";
-        a.href = img.src;
-        a.download = img_name;
-        document.body.appendChild(a);
-        a.click();
-    }
 }
 
+async function executeOCR(imageName) {
+    const response = await fetch(`/executeOCR/${imageName}`)
+    const result = await response.text();
 
-function ImgOCR(name) {
-    // const cp = require('child_process').spawn;
-    // python file 불러오기
-    const result = spawn('python', ['OCR.py', name]);
-
-    console.log(name)
-    console.log(result)
-
-    result.stdout.on('data', function(data) {
-        console.log(data.toString());
-    });
+    console.log(result);
 }
+

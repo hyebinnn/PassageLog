@@ -4,48 +4,30 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
         <script defer type="module" src="./LoadImage.js"></script>
-        <script defer>
-            var myFile = new Object();
-
-            function setImgName() {
-                const rand = Math.floor(Math.random()*1000);
-                console.log(rand);
-                img_name = `original_img${rand}.jpeg`;
-
-                return img_name;
-            }
-
-            function getImgName(Imgname) {
-                return Imgname;
-            }
-
-    </script>
 
     <style>
         .button {
             display: flex;
             width: fit-content;
-            /* align-items: center; */
             justify-content: center;
             margin: auto;
             padding: 7px;
             border: 1px solid gray;
         }
-        .OCR_btn {
+        .buttonStyle {
             display: flex;
             width: fit-content;
             justify-content: center;
             margin: auto;
-            padding: 7px;
-            border: 1px solid gray;
+            padding: 6px;
+            border: 1.5px solid gray;
         }
         label {
             cursor: pointer;
             font-size: 1em;
         }
-        #ChooseFile {
+        #uploadImgFile {
             visibility: hidden;
         }
         .preview {
@@ -75,28 +57,20 @@
 
 
 
-    <form method="post" enctype="multipart/form-data">          
-        <div class="button">
-            <label for="ChooseFile">
-                📂 File Upload     
+    <form action="/upload" method="post" enctype="multipart/form-data">        
+        <div class="buttonStyle">
+            <label for="uploadImgFile">
+                📂 이미지 업로드
             </label>
         </div>
-        <input type="file" id="ChooseFile" name="ChooseFile" accept="image/*" onchange="
-        myFile.name = setImgName();             // myFile 객체의 name은 000
-        loadFile(this, myFile['name']);
-        ">
-        <!-- 이미지 파일이 선택된 순간, loadFile이라는 함수 실행 -->
+        <input type="file" id="uploadImgFile" name="uploadImgFile" accept="image/*">
     </form>
 
-    <div class="OCR_btn">
+    <div class="buttonStyle">
         <label for="StartOCR">
-            ✏️ Start OCR !     
+            ✏️ Start OCR
         </label>
     </div>
-    <input type="button" id="StartOCR" name="StartOCR" onclick="
-    console.log(myFile['name']);
-    ImgOCR(myFile['name']);
-    "
-
+    <input type="button" id="StartOCR" name="StartOCR">
 </body>
 </html>
