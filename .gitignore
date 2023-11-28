@@ -4,6 +4,7 @@
 bin/
 node_modules/
 package-lock.json
+uploads/
 
 ### Java ###
 # Compiled class file
