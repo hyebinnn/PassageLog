@@ -2,30 +2,35 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head style="height: 50px;">
         <meta charset="UTF-8">
         <script defer type="module" src="./LoadImage.js"></script>
-
     <style>
-        .button {
+        body {
             display: flex;
-            width: fit-content;
             justify-content: center;
-            margin: auto;
-            padding: 7px;
-            border: 1px solid gray;
+            margin: 20px;
+            margin-top: 50px;
+        }
+        .container {
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .buttonStyle {
-            display: flex;
             width: fit-content;
-            justify-content: center;
             margin: auto;
             padding: 6px;
             border: 1.5px solid gray;
         }
+        form {
+            margin: 0;
+        }
         label {
             cursor: pointer;
             font-size: 1em;
+            margin: 0;
         }
         #uploadImgFile {
             visibility: hidden;
@@ -33,44 +38,90 @@
         .preview {
             display: flex;
             justify-content: center;
-            height: 550px; 
+            height: 500px; 
             width: 400px; 
             margin: auto;
             margin-bottom: 15px;
+        }
+        #left {
+            width: 40vw;
+            /* border: 1px solid gray; */
+            float: left;
+            padding: 3%;
+        }
+        #middle {
+            width: 10vw;
+            float: left;
+            /* border: 1px solid gray; */
+            display: flex;
+            justify-content: center;
+        }
+        #right {
+            width: 40vw;
+            /* border: 1px solid gray; */
+            float: left;
+            padding: 3%;
+        }
+        .OutputView {
+            display: flex;
+            justify-content: center;
+            height: 500px; 
+            width: 400px; 
+            margin: auto;
+            margin-bottom: 15px;
+            background-color: gray;
+        }
+        .middleLine {
+            border: thin solid lightgray; 
+            height: 95%;
+            display: flex;
+            justify-content: center;
+            margin: auto;
         }
     </style>
 
 
 </head>
 <body>
-    <header style="height: 50px;"> </header>
+    <!-- <header style="height: 200px;"> </header> -->
     <!-- 
         enctype: 데이터 받아올 때 인코딩 타입
         class: id와 비슷함. id는 같은 이름 중복 사용이 불가능하지만, class는 중복 가능
         label for: 주로 input 태그의 이름을 붙여주는 용도. 태그 id와 비슷
         accept: 설정해둔 파일 형식만 불러오기 가능
     -->
+        <div id="left">
+            <div class="preview">
+            </div>
 
-    <div class="preview">
-        
-    </div>
+            <div class="container">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <div class="buttonStyle">
+                    <label for="uploadImgFile">
+                        📂 이미지 업로드
+                    </label>
+                </div>
+                <input type="file" id="uploadImgFile" name="uploadImgFile" accept="image/*">
+            </form>
+            </div>
 
-
-
-    <form action="/upload" method="post" enctype="multipart/form-data">        
-        <div class="buttonStyle">
-            <label for="uploadImgFile">
-                📂 이미지 업로드
-            </label>
+            <div class="container">
+            <div class="buttonStyle">
+                <label for="StartOCR">
+                    ✏️ Start OCR
+                </label>
+            </div>
         </div>
-        <input type="file" id="uploadImgFile" name="uploadImgFile" accept="image/*">
-    </form>
+        </div>
 
-    <div class="buttonStyle">
-        <label for="StartOCR">
-            ✏️ Start OCR
-        </label>
-    </div>
-    <input type="button" id="StartOCR" name="StartOCR">
-</body>
+        <div id="middle">
+            <div class="middleLine"></div>
+        </div>
+
+        <div id="right">
+            <div class="OutputView">
+            </div>
+
+        </div>
+    </body>
 </html>
