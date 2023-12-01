@@ -53,7 +53,6 @@ app.post('/upload', upload.single('imgFile'), (req, res) => {
 
 app.get('/executeOCR/:imageName', async (req, res) => {
     const { imageName } = req.params;
-
     const result = await runOCR(imageName);
 
     res.send(result);
@@ -61,15 +60,26 @@ app.get('/executeOCR/:imageName', async (req, res) => {
 
 async function runOCR(imageName) {
     return new Promise((resolve) => {
-        const ocrProcess = spawn('python', ['./OCR.py', imageName]);
+        const ocrProcess = spawn('python', ['OCR.py', imageName]);
         let result = '';
 
         ocrProcess.stdout.on('data', (data) => {
+            console.log(data);
             result += data.toString();
         });
 
-        ocrProcess.on('close', () => {
-            resolve(result);
+        ocrProcess.stderr.on('data', (data) => {
+            console.error(`${data}`);
+        })
+
+        
+        ocrProcess.on('close', (code) => {
+            if (code == 0) {
+                console.log('yes');
+                resolve(result);
+            } else {
+                console.log('no', code);
+            }
         });
     });
 }
