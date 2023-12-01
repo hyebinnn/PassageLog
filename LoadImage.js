@@ -21,9 +21,10 @@ fileInput.addEventListener('change', function () {
 })
 
 
-var ocrBtn = document.getElementById("StartOCR");
+var ocrBtn = document.querySelector('label[for="StartOCR"]');
 ocrBtn.addEventListener('click', function() {
     console.log('image name is :', imgName);
+    executeOCR(imgName);
 })
 
 export function loadFile(imgName) {
@@ -40,18 +41,18 @@ export function loadFile(imgName) {
     Image.src = imgPath;
 
     Image.style.width = "400px";
-    Image.style.height = "550px";
+    Image.style.height = "500px";
     Image.style.margin = "auto";
     Image.style.marginBottom = "15px";
-    Image.style.border = "1px solid gray";
     Image.style.objectFit = "contain";
     ImagePreview.appendChild(Image);
 }
 
 async function executeOCR(imageName) {
+    console.log('12', imageName)
     const response = await fetch(`/executeOCR/${imageName}`)
     const result = await response.text();
-
     console.log(result);
+
 }
 
