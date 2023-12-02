@@ -4,6 +4,8 @@
 <html lang="en">
     <head style="height: 50px;">
         <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <script defer type="module" src="./LoadImage.js"></script>
     <style>
         body {
@@ -18,11 +20,12 @@
             justify-content: center;
             align-items: center;
         }
-        .buttonStyle {
-            width: fit-content;
+        .btn {
             margin: auto;
-            padding: 6px;
-            border: 1.5px solid gray;
+            display: flex;
+            justify-content: center;
+            font-weight: bold;
+            width: fit-content;
         }
         form {
             margin: 0;
@@ -33,7 +36,7 @@
             margin: 0;
         }
         #uploadImgFile {
-            visibility: hidden;
+            display: none;
         }
         .preview {
             display: flex;
@@ -45,31 +48,31 @@
         }
         #left {
             width: 40vw;
-            /* border: 1px solid gray; */
             float: left;
             padding: 3%;
         }
         #middle {
             width: 10vw;
             float: left;
-            /* border: 1px solid gray; */
             display: flex;
             justify-content: center;
         }
         #right {
             width: 40vw;
-            /* border: 1px solid gray; */
             float: left;
             padding: 3%;
         }
-        .OutputView {
+        #OutputView {
             display: flex;
             justify-content: center;
             height: 500px; 
             width: 400px; 
+            overflow: auto;
             margin: auto;
             margin-bottom: 15px;
-            background-color: gray;
+            border: solid lightpink;
+            white-space: pre-wrap;
+            
         }
         .middleLine {
             border: thin solid lightgray; 
@@ -83,7 +86,6 @@
 
 </head>
 <body>
-    <!-- <header style="height: 200px;"> </header> -->
     <!-- 
         enctype: 데이터 받아올 때 인코딩 타입
         class: id와 비슷함. id는 같은 이름 중복 사용이 불가능하지만, class는 중복 가능
@@ -96,22 +98,18 @@
 
             <div class="container">
             <form action="/upload" method="post" enctype="multipart/form-data">
-                <div class="buttonStyle">
-                    <label for="uploadImgFile">
+                    <label for="uploadImgFile" class="btn btn-outline-secondary">
                         📂 이미지 업로드
                     </label>
-                </div>
                 <input type="file" id="uploadImgFile" name="uploadImgFile" accept="image/*">
             </form>
             </div>
 
             <div class="container">
-            <div class="buttonStyle">
-                <label for="StartOCR">
+                <label for="StartOCR" class="btn btn-outline-secondary">
                     ✏️ Start OCR
                 </label>
             </div>
-        </div>
         </div>
 
         <div id="middle">
@@ -119,9 +117,13 @@
         </div>
 
         <div id="right">
-            <div class="OutputView">
+            <textarea id="OutputView" readonly></textarea>
+            <div class="container">
+                <button id="modifyBtn" class="btn btn-outline-secondary">✍🏻 수정하기</button>
+                </div>
+            <div class="container">
+                <button id="submitBtn" class="btn btn-outline-secondary">💿 기록하기</button>
             </div>
-
         </div>
     </body>
 </html>
