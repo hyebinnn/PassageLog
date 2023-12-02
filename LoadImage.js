@@ -48,11 +48,28 @@ export function loadFile(imgName) {
     ImagePreview.appendChild(Image);
 }
 
-async function executeOCR(imageName) {
-    console.log('12', imageName)
-    const response = await fetch(`/executeOCR/${imageName}`)
-    const result = await response.text();
-    console.log(result);
+var ocrResultView = document.getElementById('OutputView');
 
+async function executeOCR(imageName) {
+    const response = await fetch(`/executeOCR/${imageName}`)
+    var result = await response.text();
+    console.log(result);
+    
+    ocrResultView.value = result;
 }
 
+var modifyBtn = document.getElementById('modifyBtn');
+modifyBtn.addEventListener('click', function() {
+    if (modifyBtn.innerText == '✍🏻 수정하기') {
+        ocrResultView.readOnly = false;
+        modifyBtn.textContent = '💡 수정 완료';
+    } else if (modifyBtn.innerText == '💡 수정 완료') {
+        ocrResultView.readOnly = true;
+        modifyBtn.textContent = '✍🏻 수정하기';
+    }
+})
+
+var submitBtn = document.getElementById('submitBtn');
+submitBtn.addEventListener('click', function() {
+    console.log(ocrResultView.value)
+})

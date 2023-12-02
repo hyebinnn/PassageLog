@@ -9,7 +9,6 @@ def OCR(img_name):
 
     path = './uploads/'
     img_path = path + img_name
-    print(img_path)
 
     try:
         img = cv2.imread(img_path)
@@ -26,5 +25,6 @@ def OCR(img_name):
 
 if __name__ == '__main__':
     res = OCR(sys.argv[1])
+    # res = OCR('IMG_6130-2023122_91830.jpg')
     if res:
         print(res)
