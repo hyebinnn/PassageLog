@@ -20,10 +20,13 @@ fileInput.addEventListener('change', function () {
     }
 })
 
+var loadingDiv = document.getElementById('loading');
+var middleLine = document.querySelector('.middleLine');
 
 var ocrBtn = document.querySelector('label[for="StartOCR"]');
 ocrBtn.addEventListener('click', function() {
     console.log('image name is :', imgName);
+    showLoading();
     executeOCR(imgName);
 })
 
@@ -56,6 +59,18 @@ async function executeOCR(imageName) {
     console.log(result);
     
     ocrResultView.value = result;
+    hideLoading();
+}
+
+function showLoading() {
+    loadingDiv.style.display = 'block';
+    middleLine.style.display = 'none';
+
+}
+
+function hideLoading() {
+    middleLine.style.display = 'block';
+    loadingDiv.style.display = 'none';
 }
 
 var modifyBtn = document.getElementById('modifyBtn');
