@@ -6,13 +6,13 @@
         <meta charset="UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-        <script defer type="module" src="./LoadImage.js"></script>
+        <script defer type="module" src="./passageOCR.js"></script>
     <style>
         body {
             display: flex;
             justify-content: center;
             margin: 20px;
-            margin-top: 50px;
+            margin-top: 30px;
         }
         .container {
             height: 50px;
@@ -53,9 +53,11 @@
         }
         #middle {
             width: 10vw;
+            height: 90vh;
             float: left;
             display: flex;
             justify-content: center;
+            align-items: center;
         }
         #right {
             width: 40vw;
@@ -107,12 +109,15 @@
 
             <div class="container">
                 <label for="StartOCR" class="btn btn-outline-secondary">
-                    ✏️ Start OCR
+                    ✏️ 글자 추출하기
                 </label>
             </div>
         </div>
 
         <div id="middle">
+            <div id="loading">
+                <img src="./icon/pink_loading.gif">
+            </div>
             <div class="middleLine"></div>
         </div>
 

@@ -37,7 +37,7 @@ const upload = multer({storage: storage});
 app.use(express.static(path.join(__dirname)));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/UploadPage.html'));
+    res.sendFile(path.join(__dirname, '/mainPage.html'));
 });
 
 app.post('/upload', upload.single('imgFile'), (req, res) => {
