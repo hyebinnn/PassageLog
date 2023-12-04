@@ -79,6 +79,22 @@ modifyBtn.addEventListener('click', function() {
         ocrResultView.readOnly = false;
         modifyBtn.textContent = '💡 수정 완료';
     } else if (modifyBtn.innerText == '💡 수정 완료') {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'center-center',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    
+        Toast.fire({
+            icon: 'success',
+            title: '수정이 완료되었습니다!'
+        });
         ocrResultView.readOnly = true;
         modifyBtn.textContent = '✍🏻 수정하기';
     }
